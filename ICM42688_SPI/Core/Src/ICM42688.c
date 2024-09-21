@@ -59,24 +59,25 @@ uint8_t ICM42688_SPIReadReg(uint8_t regAdr)
 	regAdr |= 0x80;
 
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
-	HAL_Delay(1);
+	//HAL_Delay(1);
 	HAL_SPI_Transmit(&hspi1, &regAdr, 1, 100);
-	HAL_Delay(1);
+	//HAL_Delay(1);
 	HAL_SPI_Receive(&hspi1, &regVal, 1, 100);
-	HAL_Delay(1);
+	//HAL_Delay(1);
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
 
 	return regVal;
 }
+
 int8_t ICM42688_SPIWriteReg(uint8_t regAdr, uint8_t regVal)
 {
 
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_RESET);
-	HAL_Delay(1);
+	//HAL_Delay(1);
 	HAL_SPI_Transmit(&hspi1, &regAdr, 1, 100);
-	HAL_Delay(1);
+	//HAL_Delay(1);
 	HAL_SPI_Transmit(&hspi1, &regVal, 1, 100);
-	HAL_Delay(1);
+	//HAL_Delay(1);
 	HAL_GPIO_WritePin(SPI1_CS_GPIO_Port, SPI1_CS_Pin, GPIO_PIN_SET);
 
 	if(ICM42688_SPIReadReg(regAdr) != regVal)

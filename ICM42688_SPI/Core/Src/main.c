@@ -41,6 +41,8 @@
 
 COM_InitTypeDef BspCOMInit;
 SPI_HandleTypeDef hspi1;
+DMA_HandleTypeDef hdma_spi1_tx;
+DMA_HandleTypeDef hdma_spi1_rx;
 
 TIM_HandleTypeDef htim5;
 
@@ -50,8 +52,9 @@ TIM_HandleTypeDef htim5;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_SPI1_Init(void);
+static void MX_DMA_Init(void);
 static void MX_TIM5_Init(void);
+static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
 /* USER CODE END PFP */
 
@@ -85,10 +88,11 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI1_Init();
+  MX_DMA_Init();
   MX_TIM5_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);//								, TIM_CHANNEL_2, TIM_CHANNEL_3, TIM_CHANNEL_4); // Start PWM: TIM5
+  HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);	// Start PWM: TIM5
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_2); // Start PWM: TIM5
   /* USER CODE END 2 */
 
@@ -336,6 +340,29 @@ static void MX_TIM5_Init(void)
 
   /* USER CODE END TIM5_Init 2 */
   HAL_TIM_MspPostInit(&htim5);
+
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMAMUX1_CLK_ENABLE();
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+  /* DMA1_Channel2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel2_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel2_IRQn);
+  /* DMAMUX_OVR_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMAMUX_OVR_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMAMUX_OVR_IRQn);
 
 }
 
