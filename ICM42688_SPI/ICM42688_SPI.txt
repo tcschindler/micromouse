@@ -1,0 +1,64 @@
+Configuration	ICM42688_SPI
+STM32CubeMX 	6.12.0
+Date	09/13/2024
+MCU	STM32G474RETx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+SPI1	Full-Duplex Master	SPI1_MISO	PA6
+SPI1	Full-Duplex Master	SPI1_MOSI	PA7
+SPI1	Full-Duplex Master	SPI1_SCK	PA5
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+SYS	Dead Battery Signals disabled	SYS_VS_DBSignals	VP_SYS_VS_DBSignals
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+2	PC13	GPIO_EXTI13	B1 [blue push button]
+18	PA4	GPIO_Output	SPI1_CS
+19	PA5	SPI1_SCK	
+20	PA6	SPI1_MISO	
+21	PA7	SPI1_MOSI	
+PERIPHERALS	MODES	FUNCTIONS	PINS
+SPI1	Full-Duplex Master	SPI1_MISO	PA6
+SPI1	Full-Duplex Master	SPI1_MOSI	PA7
+SPI1	Full-Duplex Master	SPI1_SCK	PA5
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+SYS	Dead Battery Signals disabled	SYS_VS_DBSignals	VP_SYS_VS_DBSignals
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+2	PC13	GPIO_EXTI13	B1 [blue push button]
+18	PA4	GPIO_Output	SPI1_CS
+19	PA5	SPI1_SCK	
+20	PA6	SPI1_MISO	
+21	PA7	SPI1_MOSI	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : ICM42688_SPI
+Project Folder : C:\Users\physik\STM32CubeIDE\workspace_1.16.0\ICM42688_SPI
+Toolchain / IDE : STM32CubeIDE
+Firmware Package Name and Version : STM32Cube FW_G4 V1.6.0
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+
